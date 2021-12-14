@@ -19,51 +19,23 @@ original challenge repository: [Typescript/SOLID](https://github.com/becodeorg/A
 read the whole challenge carefully. There is a description of necessary actions to take such as installing a few tools and programs, so i'll start with that and once i'm through there i'll strategise for the next part. 
 
 ## Log/Self-reflection
+Day 1: Tuesday 14/12/21
 9:00 - 9:30 : read and initial commit of readme & reading of TypeScript for JavaScript Programmers.
 possible further steps after reading the 5 min intro: after lunch maybe, installation of the programs and tools has priority. 
 Read the full Handbook [from start to finish](https://www.typescriptlang.org/docs/handbook/intro.html) (30m) 
 Explore the [Playground examples](https://www.typescriptlang.org/play#show-examples)
-9:30 - 10:00: Installing Typescript and parcel. 
+9:30 - 10:00: Installing Typescript and parcel. Asked some clarification how to install Typescript globally, noticed that I don't have to go to any specific folders for global installs, taking that with me.
+Mentioned the previous link gave a 404 and asked some clarification. Everything clear now. Made it apparent to me that the main goal of this week is to learn how to wrtie proper OOP code that will be able to be used effectively in team.
+10:00 -11:00: finish installing Parcel, start with exercises, reading and working on understanding of [S]OLID: Single Responsibility Principle. also, coffee. 
+11:00 - 12:30 Started on the exercises, first one Car class to Car-, Engine-, MusicPlayer-classes. 
+Working on understanding the current way they work together to then deconstruct and reconfigure through separate classes. 
+Will first of all move the elements in the Car.ts file that 100% sure belong to the separate classes. 
+there are some that are still not clear if they need to be elsewhere but will figure that out as i go on. 
+12:30 : Lunch Break
+14:00 : expected end of break after Watch. 
+14:00 - 15:00: Continuation of SOLID. 
 
-## The Mission: Prologue
-Javascript is a great language but it does not come **Type Safety** out of the box. This is the ability for the programmer to define input and output variables for a function (like in PHP) and so having more stability in their code.
-This is why we are going to explore a a new language called TypeScript, which builds on JavaScript, which adds static type definitions.
 
-For example, trying to pass a String to function that expects a number will throw an error on compilation, even before testing it in the browser! This way you get very fast feedback in your editor when there are problems in your code.
-In code this looks like this:
-
-```javascript
-function sum(a, b) {
-    return a+b;
-}
-```
-
-becomes
-
-```typescript
-function sum(a : number, b : number) : number {
-    return a+b;
-}
-```
-
-Trying to pass a string to this function will now immediately trigger an error in your console.
-
-Start by reading [TypeScript for JavaScript Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
-
-### Installation
-Typescript will transform all of your code to Javascript, making it work again in any browser (So all Typescript code is in the JS code). However, in order for this to work you will need to install a compiler.
-Luckily this is rather simple, go to the [installation page](https://www.typescriptlang.org/download) and choose the option for your OS. 
-
-#### PhpStorm integration
-At this point you should no longer be surprised, but PHPStorm comes with support for TypeScript out of the box. However, in order for this to work you might need to install [node.js](https://nodejs.org/en/).
-
-There are 2 ways of working with TypesScript in your IDE, the first option is to make it so all TypeScript files are compiled the moment you change something in the file.
-To do this go to ```File | Settings | Languages & Frameworks | TypeScript```. Make sure to check the correct checkbox.
-
-![install-phpstorm-on-change](install-phpstorm-1.png)
-
-Another option is to click on the "compile" button at the bottom of your editor. You can then either recompile the file your are currently in, or all files in the entire project.
-![install-phpstorm-compile-button](install-phpstorm-2.png)
 
 ### Working with Parcel
 Parcel is a web application bundler, that will compile all the JS code
