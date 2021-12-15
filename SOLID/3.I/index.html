@@ -22,15 +22,19 @@
         <label><input type="radio" name="type" value="google" id="typeGoogle"/> Google login</label>
         <label><input type="radio" name="type" value="facebook" id="typeFacebook"/> Facebook login</label>
     </fieldset>
+    <fieldset>
+        <legend>User type</legend>
 
-    <label><input type="checkbox" name="admin" id="loginAsAdmin"/>Login as admin</label>
-
+        <label><input type="radio" name="user" value="guest" id="loginAsGuest"/>Login as guest</label>
+        <label><input type="radio" name="user" value="admin" id="loginAsAdmin"/>Login as admin</label>
+        <label><input type="radio" name="user" value="bot" id="loginAsBot"/>Login as bot</label>
+    </fieldset>
     <br />
     <input type="submit" value="Login" />
 </form>
 
 <p><a href="#" id="resetPassword">Reset password</a></p>
 
-<script src="Car.js"></script>
+<script src="Authentication.js"></script>
 </body>
 </html>

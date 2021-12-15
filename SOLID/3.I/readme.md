@@ -35,7 +35,7 @@ interface CanFly {
 ```
 
 ### Exercise: step 1
-Go into [Car.ts](old.ts) and look at the 2 different users. They have a couple of authentication methods but like you can see, Admin users can only login with a password, not with facebook or google because of security reasons.
+Go into [Car.ts](Authentication.ts) and look at the 2 different users. They have a couple of authentication methods but like you can see, Admin users can only login with a password, not with facebook or google because of security reasons.
 Refactor the current fat interface so each auth method has each own interface.
 As an extra difficulty, there is a feature request for a google bot to be able to login on the site, he can only use the google option to log in. Can you make this extra class?
 
