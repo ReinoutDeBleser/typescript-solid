@@ -36,9 +36,15 @@ there are some that are still not clear if they need to be elsewhere but will fi
 14:00 - 17:00: Continuation of SOLID. Not much progress made. 
 
 Day 2: Wednesday
-9:00 S is for Single Responsibility Principle(SRP) for solid continuation. Feel almost finished. Started a completely new file and took a different approach. 
+9:00 S is for Single Responsibility Principle(SRP) for solid continuation. Feel almost finished. 
+Started a completely new file and took a different approach. 
+ ~ Classes only impact one specific thing at a time. 
 finished at 10:00.
-10:00 O is for Open–closed principle.
+10:00-10:30: O is for Open–closed principle. This went very quickly. If you create a new class you shouldn't have to go edit a different one, this is bad because if you forget, code won't work. 
+10:30-10:45 : Start on Liskov. 
+11:00-11:35: Liskov start -> finished. understanding polymorphisms. An inferface checks if different classes adhere to the same structures. 
+11:35-11:40: Updating README.md. Making good time now. Not sure why i got stuck on the first one so bad. Need to revisit and review. Listening to Homage-Roses on loop for focus, ambient lo-fi hiphop. 
+11:40-12:30: Expecting to spend time on [I] for Interface Segregation Principle.
 
 
 
