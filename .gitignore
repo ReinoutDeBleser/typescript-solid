@@ -5,7 +5,9 @@ bin-release/
 [Bb]in/
 
 # Other files and folders
-.settings/
+.settings
+/dist
+.idea
 
 # Executables
 *.swf
