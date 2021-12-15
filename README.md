@@ -33,7 +33,12 @@ Will first of all move the elements in the Car.ts file that 100% sure belong to 
 there are some that are still not clear if they need to be elsewhere but will figure that out as i go on. 
 12:30 : Lunch Break
 14:00 : expected end of break after Watch. 
-14:00 - 15:00: Continuation of SOLID. 
+14:00 - 17:00: Continuation of SOLID. Not much progress made. 
+
+Day 2: Wednesday
+9:00 S is for Single Responsibility Principle(SRP) for solid continuation. Feel almost finished. Started a completely new file and took a different approach. 
+finished at 10:00.
+10:00 O is for Open–closed principle.
 
 
 
