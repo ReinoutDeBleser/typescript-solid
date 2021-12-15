@@ -464,88 +464,70 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Car", ()=>Car
 );
 var _engine = require("./Engine");
-var _fuelLevel = require("./FuelLevel");
 var _musicPlayer = require("./MusicPlayer");
 class Car {
-    // depending on the generated object, a new car can have a higher max fuel cap.
-    constructor(engine1, musicPlayer1, fuelLevel1){
-        //it is convention to start property names in TypeScript with an underscore.
-        // If you want to known why, remove the underscore and see if your compiler is throwing you an error!
-        this._miles // car drives miles.
-         = 0;
-        this._engine = engine1;
-        this._musicPlayer = musicPlayer1;
-        this._fuelLevel = fuelLevel1;
+    constructor(MAXIMUM_FUEL_CAPACITY){
+        this._miles = 0;
+        this._musicPlayer = new _musicPlayer.MusicPlayer();
+        this._engine = new _engine.Engine(MAXIMUM_FUEL_CAPACITY);
     }
-    // the number of miles driven by the car
+    get musicPlayer() {
+        return this._musicPlayer;
+    }
+    get engine() {
+        return this._engine;
+    }
     get miles() {
         return this._miles;
     }
     drive() {
-        //what I am doing here is a good principle called "failing early"
+        if (this.engine.engineStatus === false || this.engine.getFuel <= 0) //what I am doing here is a good principle called "failing early"
         // If you have some conditions you need to check, that will exclude most of the code in your function check that first
         // This prevents your "happy path" of code to be deeply indented.
-        // if the engine is off or the fuel is empty.
-        if (engine.engineStatus === false || fuelLevel.fuel <= 0) return;
-        fuelLevel.fuel -= 1;
-        this._miles += engine.FuelMileage;
+        return;
+        this.engine.consumeFuel();
+        this._miles += this.engine.mileage;
     }
 }
-// When you see <cast>variable this is a "cast" of a variable, explicitly telling the code what the type of this variable will be.
-// This is sometimes needed when a default JS function does not return a precise enough Type.
-// I need to cast this to HtmlElement because the default Element return type is not specific to the HTML context (because some versions of JS can also be used in the backend, see node.js)
-// This makes it not having some properties like .innerText. Test it out yourself by removing the <HTMLElement>//constants probably need to stay but also be usable in the classes?
-const milesElement = document.querySelector('#miles-value'); // where total miles driven is shown.
-const audioElement = document.querySelector('#car-music'); // this goes to the music wv file, not part of the player?
-//music const & listeners
-const musicToggleElement = document.querySelector('#music-toggle'); // MusicPlayer
-const musicSliderElement = document.querySelector('#music-slider'); // MusicPlayer
-//Fuel const & listeners
-const addFuelForm = document.querySelector('#add-fuel-form'); // Gas Pump on submit amount is added.
-const addFuelInput = document.querySelector('#add-fuel-input'); // Fuel - input, the amoubt the pump adds. ?
-const fuelLevelElement = document.querySelector('#fuel-level'); // where current fuel level is shown.
-//engine const & listeners
-const engineToggleElement = document.querySelector('#engine-toggle'); //Engine
-let engine = new Engine;
-let musicPlayer = new MusicPlayer;
-let fuelLevel = new FuelLevel;
-let car = new Car(engine, musicPlayer, fuelLevel);
-//I use input instead of change, because then the value changes when I move the mouse, not only on release
-addFuelForm.addEventListener('submit', (event)=>{
-    event.preventDefault();
-    fuelLevel.addFuel(Number(addFuelInput.value));
-    fuelLevelElement.innerText = fuelLevel.fuel.toString();
-});
-engineToggleElement.addEventListener('click', ()=>{
-    if (engine.engineStatus) {
-        engine.turnEngineOff();
-        engineToggleElement.innerText = 'Turn engine on';
-        return;
-    }
-    engineToggleElement.innerText = 'Turn engine off';
-    engine.turnEngineOn();
-});
+const musicToggleElement = document.querySelector('#music-toggle');
+const musicSliderElement = document.querySelector('#music-slider');
+const engineToggleElement = document.querySelector('#engine-toggle');
+const addFuelForm = document.querySelector('#add-fuel-form');
+const addFuelInput = document.querySelector('#add-fuel-input');
+const fuelLevelElement = document.querySelector('#fuel-level');
+const milesElement = document.querySelector('#miles-value');
+const audioElement = document.querySelector('#car-music');
+let car = new Car(100);
 musicToggleElement.addEventListener('click', ()=>{
-    if (musicPlayer.musicLevel === 0) {
-        musicPlayer.turnMusicOn();
-        musicSliderElement.value = musicPlayer.musicLevel.toString();
+    if (car.musicPlayer.musicLevel === 0) {
+        car.musicPlayer.turnMusicOn();
+        musicSliderElement.value = car.musicPlayer.musicLevel.toString();
         musicToggleElement.innerText = 'Turn music off';
         return;
     }
     musicToggleElement.innerText = 'Turn music on';
-    musicPlayer.turnMusicOff();
+    car.musicPlayer.turnMusicOff();
 });
 musicSliderElement.addEventListener('input', (event)=>{
     let target = event.target;
-    musicPlayer.musicLevel = target.value;
-    audioElement.volume = musicPlayer.musicLevel / 100;
+    car.musicPlayer.musicLevel = target.value;
+    audioElement.volume = car.musicPlayer.musicLevel / 100;
     //@todo when you are repeating the same text over and over again maybe we should have made some constants for it? Can you do improve on this?
-    musicToggleElement.innerText = musicPlayer.musicLevel ? 'Turn music off' : 'Turn music on';
+    musicToggleElement.innerText = car.musicPlayer.musicLevel ? 'Turn music off' : 'Turn music on';
+});
+engineToggleElement.addEventListener('click', ()=>{
+    if (car.engine.engineStatus) {
+        car.engine.turnEngineOff();
+        engineToggleElement.innerText = 'Turn engine on';
+        return;
+    }
+    engineToggleElement.innerText = 'Turn engine off';
+    car.engine.turnEngineOn();
 });
 addFuelForm.addEventListener('submit', (event)=>{
     event.preventDefault();
-    fuelLevel.addFuel(Number(addFuelInput.value));
-    fuelLevelElement.innerText = fuelLevel.fuel.toString();
+    car.engine.addFuel(Number(addFuelInput.value));
+    fuelLevelElement.innerText = car.engine.getFuel.toString();
 });
 setInterval(()=>{
     car.drive();
@@ -553,81 +535,48 @@ setInterval(()=>{
     // this <cast> will only tell TypeScript that the value is a string, but the actual variable in JS is not changed in any way: it is in reality still a number
     milesElement.innerText = car.miles;
     // This .toString() will actually convert the value in JavaScript from an integer to a string
-    fuelLevelElement.innerText = fuelLevel.fuel.toString();
-    // make this a MusicPlayer-method?
-    if (musicPlayer.musicLevel === 0) audioElement.pause();
+    fuelLevelElement.innerText = car.engine.getFuel.toString();
+    if (car.musicPlayer.musicLevel === 0) audioElement.pause();
     else audioElement.play();
 }, 1000);
 
-},{"./Engine":"aBpYl","./FuelLevel":"ir5Oh","./MusicPlayer":"6bE5c","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aBpYl":[function(require,module,exports) {
+},{"./Engine":"aBpYl","./MusicPlayer":"6bE5c","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"aBpYl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Engine", ()=>Engine
+);
+var _car = require("./Car");
 class Engine {
-    constructor(_engineStatus = false, FUEL_MILEAGE = 10){
-        this._engineStatus = _engineStatus;
-        this.FUEL_MILEAGE = FUEL_MILEAGE;
+    constructor(MAXIMUM_FUEL_CAPACITY){
+        this._engineStatus = false;
+        this._fuel = 0;
+        this.MAXIMUM_FUEL_CAPACITY = MAXIMUM_FUEL_CAPACITY;
+        this.FUEL_MILEAGE = 10;
     }
-    //engine status going to  drive
+    get getFuel() {
+        return this._fuel;
+    }
+    consumeFuel() {
+        this._fuel -= 1;
+    }
+    addFuel(fuel) {
+        this._fuel = Math.min(fuel + this._fuel, this.MAXIMUM_FUEL_CAPACITY);
+    }
     get engineStatus() {
         return this._engineStatus;
     }
-    get FuelMileage() {
+    get mileage() {
         return this.FUEL_MILEAGE;
     }
-    //engine status update depending on toggle
     turnEngineOn() {
         this._engineStatus = true;
     }
-    //engine status update depending on toggle
     turnEngineOff() {
         this._engineStatus = false;
     }
 }
 
-},{}],"ir5Oh":[function(require,module,exports) {
-class FuelLevel {
-    constructor(fuel = 0, maxFuel = 100){
-        this._fuel = fuel;
-        this._maxFuel = maxFuel;
-    }
-    get fuel() {
-        return this._fuel;
-    }
-    set fuel(value) {
-        this._fuel -= value;
-    }
-    get maxFuel() {
-        return this._maxFuel;
-    }
-    addFuel(fuel1) {
-        this._fuel = Math.min(fuel1 + this._fuel, this._maxFuel);
-    }
-}
-
-},{}],"6bE5c":[function(require,module,exports) {
-class MusicPlayer {
-    constructor(musicLevel = 0, oldMusicLevel = 50){
-        this._musicLevel = musicLevel;
-        this._oldMusicLevel = oldMusicLevel;
-    }
-    // getter for the setinterval.
-    get musicLevel() {
-        return this._musicLevel;
-    }
-    //setter for the functionalities.
-    set musicLevel(value) {
-        this._musicLevel = value;
-        this._oldMusicLevel = value;
-    }
-    //on button for MP
-    turnMusicOn() {
-        this._musicLevel = this._oldMusicLevel;
-    }
-    //off button for MP
-    turnMusicOff() {
-        this._musicLevel = 0;
-    }
-}
-
-},{}],"ciiiV":[function(require,module,exports) {
+},{"./Car":"jJnaA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -657,6 +606,32 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["cuB3G","jJnaA"], "jJnaA", "parcelRequire94c2")
+},{}],"6bE5c":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MusicPlayer", ()=>MusicPlayer
+);
+var _car = require("./Car");
+class MusicPlayer {
+    get musicLevel() {
+        return this._musicLevel;
+    }
+    set musicLevel(value) {
+        this._musicLevel = value;
+        this._oldMusicLevel = value;
+    }
+    turnMusicOn() {
+        this._musicLevel = this._oldMusicLevel;
+    }
+    turnMusicOff() {
+        this._musicLevel = 0;
+    }
+    constructor(){
+        this._musicLevel = 0;
+        this._oldMusicLevel = 50;
+    }
+}
+
+},{"./Car":"jJnaA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["cuB3G","jJnaA"], "jJnaA", "parcelRequire94c2")
 
 //# sourceMappingURL=index.82f1652b.js.map

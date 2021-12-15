@@ -1,9 +1,9 @@
 var MusicPlayer = /** @class */ (function () {
-    function MusicPlayer(_musicLevel, _oldMusicLevel) {
-        if (_musicLevel === void 0) { _musicLevel = 0; }
-        if (_oldMusicLevel === void 0) { _oldMusicLevel = 50; }
-        this._musicLevel = _musicLevel;
-        this._oldMusicLevel = _oldMusicLevel;
+    function MusicPlayer(musicLevel, oldMusicLevel) {
+        if (musicLevel === void 0) { musicLevel = 0; }
+        if (oldMusicLevel === void 0) { oldMusicLevel = 50; }
+        this._musicLevel = musicLevel;
+        this._oldMusicLevel = oldMusicLevel;
     }
     Object.defineProperty(MusicPlayer.prototype, "musicLevel", {
         // getter for the setinterval.

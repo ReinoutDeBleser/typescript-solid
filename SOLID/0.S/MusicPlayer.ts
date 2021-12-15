@@ -1,25 +1,26 @@
-class MusicPlayer {
-    private _musicLevel : number;
-    private _oldMusicLevel : number;
-    constructor(musicLevel : number = 0, oldMusicLevel: number = 50) {
-        this._musicLevel = musicLevel;
-        this._oldMusicLevel = oldMusicLevel;
-    }
-    // getter for the setinterval.
-    get musicLevel(): number { // MusicPlayer
+import './Car'
+
+export class MusicPlayer {
+    private _musicLevel : number = 0;
+    private _oldMusicLevel : number = 50;
+
+
+
+    get musicLevel(): number {
         return this._musicLevel;
     }
-    //setter for the functionalities.
-    set musicLevel(value: number) { // MusicPlayer
+
+    set musicLevel(value: number) {
         this._musicLevel = value;
         this._oldMusicLevel = value;
     }
-    //on button for MP
-    turnMusicOn() { // MusicPlayer
+
+    turnMusicOn() {
         this._musicLevel = this._oldMusicLevel;
     }
-    //off button for MP
+
     turnMusicOff() {
         this._musicLevel = 0;
     }
 }
+
