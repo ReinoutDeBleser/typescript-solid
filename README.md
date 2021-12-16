@@ -43,7 +43,7 @@ After I get stuck I
 
 ## Log/Self-reflection
 
-####Day 1: Tuesday 14/12/21  
+#### Day 1: Tuesday 14/12/21  
 
 9:00 - 9:30 : read and initial commit of readme & reading of TypeScript for JavaScript Programmers.  
 possible further steps after reading the 5 min intro: after lunch maybe, installation of the programs and tools has priority.  
@@ -60,7 +60,7 @@ there are some that are still not clear if they need to be elsewhere but will fi
 14:00 : expected end of break after Watch.  
 14:00 - 17:00: Continuation of SOLID. Not much progress made.   
 
-####Day 2: Wednesday  15/12/21
+#### Day 2: Wednesday  15/12/21
 
 9:00 S is for Single Responsibility Principle(SRP) for solid continuation. Feel almost finished.  
 Started a completely new file and took a different approach.  
@@ -77,7 +77,7 @@ finished at 10:00.
 15:00-16:00: Continuation of [D] for Dependency Inversion Principle. Problem with "npx parcel index.html" command, afaik all code should be working.  
 16:00-17:00: ask for help finding problem with npx command, updating README.md, thinking about own project and thinking of ways to showcase what I can and challenge myself.  
 
-Day 3: Thursday  16/12/21: finishing up README.md and getting npm working again.  
+#### Day 3: Thursday  16/12/21: finishing up README.md and getting npm working again.  
 9:00 - 9:30: after help from one of our coaches [Sicco](https://github.com/Sick-0) I got the advice to run the `npm init`+steps , `npm install typescript`, `npm install parcel`, `npx parcel index.html` command in succession. after which the project loaded without issue.  
 
 ### Working with Parcel
