@@ -1,0 +1,15 @@
+{
+  "name": "resto",
+  "version": "1.0.0",
+  "description": "At its heart, the DIP is about structure. \r The manner in which you structure your program entities, \r and the way in which they interact with one another,\r has a direct impact on your ability to conform to the rest of the SOLID principles (the benefits of which we have discussed previously.) \r If your dependencies are mismanaged, then the likelihood of your code being flexible, maintainable, and reusable is drastically diminished.",
+  "main": "Resto.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.0.1",
+    "typescript": "^4.5.4"
+  }
+}

@@ -102,12 +102,12 @@ let creperie = new Restaurant("Creperie", new Stove());
 creperie.Cook("crepes");
 
 
-// let bakery = new Restaurant("Bakery", new Oven());
-// bakery.Cook("cookies");
+let bakery = new Restaurant("Bakery", new Oven());
+bakery.Cook("cookies");
 
 //Now if we want to add a new restaurant with an ELECTRIC cooker, we are gonna be in a hot mess ...
 /*
-let bakery = new Restaurant("Bakery", new Oven());
+let bakery = new Restaurant("Bakery", new Oven));
 bakery.Cook("cookies");
 
 

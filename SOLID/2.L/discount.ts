@@ -3,7 +3,10 @@ type discountType = "variable" | "fixed" | "none";
 const percentageValue = 100;
 interface Discount {
     _value: number;
+    apply(price:number);
+    showCalculation(price:number);
 }
+
 class VariableDiscount implements Discount{
     _value: number;
     constructor(value : number = 0) {
